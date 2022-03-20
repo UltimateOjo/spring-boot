@@ -11,24 +11,26 @@ import java.util.List;
 
 import com.example.demo.student.Student;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping(path = "api/v1/student")
-public class StudentController {
-    private final StudentService studentService;
-	
-    @Autowired
-    public StudentController(StudentService studentService){
-        this.studentService = studentService;
-    }
-
-    @GetMapping
-	public List<Student> getStudets(){
-		return studentService.getStudents();
-    }
+import java.util.List;
+/*@Service = @Component*/
+@Service
+public class StudentService {
+    public List<Student> getStudents(){
+		return Arrays.asList(
+			new Student(
+				1,
+				"Mariam",
+				"mariam.jamal@gmail.com",
+				LocalDate.of(2000,Month.JANUARY,5),
+				21
+			)
+		);
+	}    
 }
