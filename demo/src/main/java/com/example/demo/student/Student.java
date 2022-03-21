@@ -2,7 +2,27 @@ package com.example.demo.student;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Student {
+
+    @Id
+    @SequenceGenerator(
+        name = "student_sequence",
+        sequenceName = "student_sequence",
+        allocationSize = 1
+    )
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "student_sequence"
+    )
     private int id;
     private String name;
     private String email;
@@ -12,7 +32,8 @@ public class Student {
     public Student(){
 
     }
-
+    
+    
     public Student(int id, String name, String email,LocalDate dob,Integer age) {
         this.id = id;
         this.name = name;
